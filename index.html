@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5" />
+    <title>Smart Expense Splitter</title>
+    <style>
+        /* ----- CSS Variables for themes ----- */
+        :root {
+            --bg-primary: #f4f7fc;
+            --bg-card: #ffffff;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --border-light: #eef2f6;
+            --border-input: #d0d9e6;
+            --shadow-card: 0 6px 18px rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.03);
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --danger-bg: #fee2e2;
+            --danger-text: #b91c1c;
+            --pill-bg: #f1f5f9;
+            --settlement-bg: #f8fafc;
+            --badge-bg: #dbeafe;
+            --badge-text: #1e4b8a;
+            --table-border: #e2e8f0;
+            --table-border-light: #ecf1f7;
+            --green: #0b8a4b;
+            --red: #b91c1c;
+            --input-bg: #ffffff;
+            --input-text: #1e293b;
+            --collapse-bg: #f8fafc;
+            --modal-overlay: rgba(0, 0, 0, 0.5);
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0f172a;
+            --bg-card: #1e293b;
+            --text-primary: #e2e8f0;
+            --text-secondary: #94a3b8;
+            --border-light: #334155;
+            --border-input: #475569;
+            --shadow-card: 0 6px 18px rgba(0, 0, 0, 0.3);
+            --accent: #60a5fa;
+            --accent-hover: #3b82f6;
+            --danger-bg: #7f1d1d;
+            --danger-text: #fca5a5;
+            --pill-bg: #334155;
+            --settlement-bg: #2d3a4f;
+            --badge-bg: #1e3a5f;
+            --badge-text: #93c5fd;
+            --table-border: #334155;
+            --table-border-light: #2d3a4f;
+            --green: #34d399;
+            --red: #f87171;
+            --input-bg: #1e293b;
+            --input-text: #e2e8f0;
+            --collapse-bg: #1e293b;
+            --modal-overlay: rgba(0, 0, 0, 0.7);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            padding: 1.2rem;
+            display: flex;
+            justify-content: center;
+            transition: background 0.2s, color 0.2s;
+            min-height: 100vh;
+        }
+
+        .app {
+            max-width: 860px;
+            width: 100%;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        h2 {
+            font-size: 1.3rem;
+            margin: 1.2rem 0 0.6rem;
+        }
+
+        h3 {
+            font-size: 1.1rem;
+            margin: 1rem 0 0.4rem;
+        }
+
+        .card {
+            background: var(--bg-card);
+            border-radius: 20px;
+            box-shadow: var(--shadow-card);
+            padding: 1.2rem 1.4rem;
+            margin-bottom: 1.4rem;
+            border: 1px solid var(--border-light);
+            transition: background 0.2s, border 0.2s;
+        }
+
+        .flex-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem 0.8rem;
+            align-items: center;
+        }
+
+        .flex-between {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        input,
+        select,
+        button {
+            font: inherit;
+            border-radius: 40px;
+            border: 1px solid var(--border-input);
+            padding: 0.5rem 1rem;
+            background: var(--input-bg);
+            color: var(--input-text);
+            transition: 0.15s;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+        }
+
+        button {
+            background: var(--pill-bg);
+            border: none;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 0.45rem 1.2rem;
+            color: var(--text-primary);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            justify-content: center;
+            white-space: nowrap;
+            transition: background 0.15s, color 0.15s;
+        }
+
+        button.primary {
+            background: var(--accent);
+            color: white;
+            box-shadow: 0 2px 6px rgba(59, 130, 246, 0.25);
+        }
+
+        button.primary:hover {
+            background: var(--accent-hover);
+        }
+
+        button.danger {
+            background: var(--danger-bg);
+            color: var(--danger-text);
+        }
+
+        button.danger:hover {
+            opacity: 0.8;
+        }
+
+        button.secondary {
+            background: var(--text-secondary);
+            color: white;
+        }
+
+        button.outline {
+            background: transparent;
+            border: 1px solid var(--border-input);
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .pill-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem 0.6rem;
+            align-items: center;
+        }
+
+        .pill {
+            background: var(--pill-bg);
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+        }
+
+        .pill .remove {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            cursor: pointer;
+            line-height: 1;
+            padding: 0 0.1rem;
+        }
+
+        .pill .remove:hover {
+            color: var(--red);
+        }
+
+        .pill .edit {
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            cursor: pointer;
+            padding: 0 0.1rem;
+        }
+
+        .pill .edit:hover {
+            color: var(--accent);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.92rem;
+            color: var(--text-primary);
+        }
+
+        th {
+            text-align: left;
+            padding: 0.4rem 0.2rem 0.6rem 0;
+            font-weight: 600;
+            border-bottom: 1px solid var(--table-border);
+        }
+
+        td {
+            padding: 0.5rem 0.2rem 0.5rem 0;
+            border-bottom: 1px solid var(--table-border-light);
+            vertical-align: middle;
+        }
+
+        .expense-row .actions {
+            display: flex;
+            gap: 0.4rem;
+        }
+
+        .expense-row .actions button {
+            padding: 0.2rem 0.7rem;
+            font-size: 0.8rem;
+            border-radius: 30px;
+        }
+
+        .text-muted {
+            color: var(--text-secondary);
+        }
+
+        .text-green {
+            color: var(--green);
+            font-weight: 500;
+        }
+
+        .text-red {
+            color: var(--red);
+            font-weight: 500;
+        }
+
+        .text-large {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .settlement-card {
+            background: var(--settlement-bg);
+            border-radius: 16px;
+            padding: 0.8rem 1.2rem;
+            margin: 0.4rem 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            border-left: 6px solid var(--accent);
+            color: var(--text-primary);
+        }
+
+        .settlement-card .arrow {
+            font-size: 1.3rem;
+            margin: 0 0.3rem;
+        }
+
+        .inline-icon {
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem 0.9rem;
+            align-items: center;
+            padding: 0.2rem 0;
+        }
+
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            gap: 0.2rem;
+            font-size: 0.9rem;
+            cursor: pointer;
+            color: var(--text-primary);
+        }
+
+        .badge {
+            background: var(--badge-bg);
+            color: var(--badge-text);
+            padding: 0.1rem 0.7rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+        }
+
+        hr {
+            margin: 1rem 0 0.6rem;
+            border: none;
+            border-top: 1px solid var(--border-light);
+        }
+
+        .empty-state {
+            padding: 1rem 0.4rem;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        .flex-grow {
+            flex: 1;
+        }
+
+        .gap-1 {
+            gap: 0.6rem;
+        }
+
+        .mt-1 {
+            margin-top: 0.6rem;
+        }
+
+        .mb-1 {
+            margin-bottom: 0.5rem;
+        }
+
+        .truncate {
+            max-width: 140px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .theme-toggle {
+            background: var(--pill-bg);
+            border: 1px solid var(--border-input);
+            border-radius: 40px;
+            padding: 0.3rem 0.8rem;
+            cursor: pointer;
+            font-size: 1.2rem;
+            line-height: 1;
+            color: var(--text-primary);
+        }
+
+        .theme-toggle:hover {
+            opacity: 0.7;
+        }
+
+        .collapse-header {
+            cursor: pointer;
+            user-select: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .collapse-header:hover {
+            opacity: 0.8;
+        }
+
+        .collapse-content {
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            max-height: 0;
+        }
+
+        .collapse-content.open {
+            max-height: 800px;
+        }
+
+        .import-input {
+            display: none;
+        }
+
+        .file-label {
+            cursor: pointer;
+            background: var(--pill-bg);
+            padding: 0.45rem 1.2rem;
+            border-radius: 40px;
+            border: 1px solid var(--border-input);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .file-label:hover {
+            opacity: 0.8;
+        }
+
+        /* ----- MODAL ----- */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--modal-overlay);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 1rem;
+            animation: fadeIn 0.2s ease;
+        }
+
+        .modal {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 420px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.3s ease;
+        }
+
+        .modal h3 {
+            margin-top: 0;
+            margin-bottom: 0.5rem;
+        }
+
+        .modal p {
+            color: var(--text-secondary);
+            margin-bottom: 1.2rem;
+        }
+
+        .modal input {
+            width: 100%;
+            margin-bottom: 1rem;
+            padding: 0.7rem 1rem;
+            border-radius: 12px;
+        }
+
+        .modal .modal-actions {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: flex-end;
+        }
+
+        .modal .modal-actions button {
+            padding: 0.5rem 1.5rem;
+        }
+
+        .modal .modal-actions .cancel {
+            background: var(--pill-bg);
+            color: var(--text-primary);
+        }
+
+        .modal .modal-actions .confirm {
+            background: var(--accent);
+            color: white;
+        }
+
+        .modal .modal-actions .confirm:hover {
+            background: var(--accent-hover);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .card {
+                padding: 1rem;
+            }
+
+            .flex-row {
+                gap: 0.4rem;
+            }
+
+            table {
+                font-size: 0.78rem;
+            }
+
+            .settlement-card {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+            }
+
+            input,
+            select,
+            button {
+                font-size: 0.9rem;
+            }
+
+            .expense-row .actions button {
+                padding: 0.1rem 0.5rem;
+                font-size: 0.7rem;
+            }
+
+            .modal {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app" id="app"></div>
+
+    <script>
+        (function () {
+            // ---- Engine: Core logic separated from UI ----
+            const Engine = {
+                roundTwo: (v) => Math.round((v + Number.EPSILON) * 100) / 100,
+
+                calculate: (people, expenses) => {
+                    const balances = {};
+                    people.forEach(p => {
+                        balances[p.id] = {
+                            id: p.id,
+                            name: p.name,
+                            paid: 0,
+                            share: 0,
+                            balance: 0
+                        };
+                    });
+
+                    expenses.forEach(exp => {
+                        if (balances[exp.paidBy]) {
+                            balances[exp.paidBy].paid += exp.amount;
+                        }
+                        const splitAmong = exp.splitAmong || [];
+                        if (splitAmong.length > 0) {
+                            const perPerson = exp.amount / splitAmong.length;
+                            splitAmong.forEach(id => {
+                                if (balances[id]) {
+                                    balances[id].share += perPerson;
+                                }
+                            });
+                        }
+                    });
+
+                    Object.values(balances).forEach(b => {
+                        b.balance = Engine.roundTwo(b.paid - b.share);
+                    });
+                    return balances;
+                },
+
+                computeSettlements: (people, expenses) => {
+                    const balances = Engine.calculate(people, expenses);
+                    const balanceArray = Object.values(balances);
+                    const debtors = balanceArray.filter(b => b.balance < -0.005).map(b => ({ ...b }));
+                    const creditors = balanceArray.filter(b => b.balance > 0.005).map(b => ({ ...b }));
+
+                    debtors.sort((a, b) => a.balance - b.balance);
+                    creditors.sort((a, b) => b.balance - a.balance);
+
+                    const transactions = [];
+                    let i = 0, j = 0;
+                    while (i < debtors.length && j < creditors.length) {
+                        const d = debtors[i];
+                        const c = creditors[j];
+                        const amount = Math.min(Math.abs(d.balance), c.balance);
+                        if (amount > 0.001) {
+                            transactions.push({
+                                from: d.name,
+                                fromId: d.id,
+                                to: c.name,
+                                toId: c.id,
+                                amount: Engine.roundTwo(amount)
+                            });
+                        }
+                        d.balance += amount;
+                        c.balance -= amount;
+                        if (Math.abs(d.balance) < 0.005) i++;
+                        if (Math.abs(c.balance) < 0.005) j++;
+                    }
+                    return transactions;
+                }
+            };
+
+            // ---- State Management ----
+            const STORAGE_KEY = 'expense-splitter:data';
+            const THEME_KEY = 'expense-splitter:theme';
+
+            let state = {
+                tripName: 'My Trip',
+                people: [],
+                expenses: []
+            };
+            let darkMode = false;
+            let expenseFormOpen = false;
+            let modalResolve = null;
+
+            function loadState() {
+                try {
+                    const raw = localStorage.getItem(STORAGE_KEY);
+                    if (raw) {
+                        const parsed = JSON.parse(raw);
+                        state = parsed;
+                        if (!state.people) state.people = [];
+                        if (!state.expenses) state.expenses = [];
+                        if (!state.tripName) state.tripName = 'My Trip';
+                    }
+                } catch (_) { }
+
+                const theme = localStorage.getItem(THEME_KEY);
+                if (theme === 'dark') {
+                    darkMode = true;
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                } else {
+                    darkMode = false;
+                    document.documentElement.removeAttribute('data-theme');
+                }
+            }
+
+            function saveState() {
+                localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+            }
+
+            function toggleTheme() {
+                darkMode = !darkMode;
+                if (darkMode) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    localStorage.setItem(THEME_KEY, 'dark');
+                } else {
+                    document.documentElement.removeAttribute('data-theme');
+                    localStorage.removeItem(THEME_KEY);
+                }
+                render();
+            }
+
+            function generateId() {
+                return Date.now().toString(36) + Math.random().toString(36).slice(2, 9);
+            }
+
+            // ---- Custom Modal System ----
+            function showModal(options) {
+                return new Promise((resolve) => {
+                    const { title, message, inputLabel, inputType = 'text', confirmText = 'Confirm', cancelText = 'Cancel' } = options;
+
+                    const overlay = document.createElement('div');
+                    overlay.className = 'modal-overlay';
+                    overlay.innerHTML = `
+                    <div class="modal">
+                        <h3>${title}</h3>
+                        <p>${message}</p>
+                        ${inputLabel ? `<input type="${inputType}" id="modalInput" placeholder="${inputLabel}" autofocus />` : ''}
+                        <div class="modal-actions">
+                            ${cancelText ? `<button class="cancel" onclick="this.closest('.modal-overlay').remove(); window._modalResolve(null);">${cancelText}</button>` : ''}
+                            <button class="confirm" onclick="const val = document.getElementById('modalInput')?.value || true; this.closest('.modal-overlay').remove(); window._modalResolve(val);">${confirmText}</button>
+                        </div>
+                    </div>
+                `;
+                    document.body.appendChild(overlay);
+
+                    // Store resolve function
+                    window._modalResolve = resolve;
+
+                    // Focus input if exists
+                    const input = document.getElementById('modalInput');
+                    if (input) {
+                        setTimeout(() => input.focus(), 100);
+                        input.addEventListener('keydown', (e) => {
+                            if (e.key === 'Enter') {
+                                const val = input.value;
+                                overlay.remove();
+                                window._modalResolve(val);
+                            }
+                            if (e.key === 'Escape') {
+                                overlay.remove();
+                                window._modalResolve(null);
+                            }
+                        });
+                    }
+
+                    // Close on overlay click
+                    overlay.addEventListener('click', (e) => {
+                        if (e.target === overlay) {
+                            overlay.remove();
+                            window._modalResolve(null);
+                        }
+                    });
+                });
+            }
+
+            // ---- UI Actions ----
+            window.addPerson = async function () {
+                const name = await showModal({
+                    title: 'Add Person',
+                    message: 'Enter the name of the person joining this trip:',
+                    inputLabel: 'Name',
+                    confirmText: 'Add',
+                    cancelText: 'Cancel'
+                });
+
+                if (!name || name.trim() === '') return;
+                if (state.people.some(p => p.name.toLowerCase() === name.trim().toLowerCase())) {
+                    await showModal({
+                        title: 'Duplicate Name',
+                        message: 'A person with this name already exists. Please use a different name.',
+                        confirmText: 'OK',
+                        cancelText: ''
+                    });
+                    return;
+                }
+                state.people.push({
+                    id: generateId(),
+                    name: name.trim()
+                });
+                saveState();
+                render();
+            };
+
+            window.editPerson = async function (id) {
+                const person = state.people.find(p => p.id === id);
+                if (!person) return;
+
+                const newName = await showModal({
+                    title: 'Edit Person',
+                    message: 'Update the name:',
+                    inputLabel: person.name,
+                    confirmText: 'Save',
+                    cancelText: 'Cancel'
+                });
+
+                if (!newName || newName.trim() === '') return;
+                if (state.people.some(p => p.id !== id && p.name.toLowerCase() === newName.trim().toLowerCase())) {
+                    await showModal({
+                        title: 'Duplicate Name',
+                        message: 'A person with this name already exists.',
+                        confirmText: 'OK',
+                        cancelText: ''
+                    });
+                    return;
+                }
+                person.name = newName.trim();
+                saveState();
+                render();
+            };
+
+            window.removePerson = async function (id) {
+                const person = state.people.find(p => p.id === id);
+                if (!person) return;
+
+                const usedInExpenses = state.expenses.some(e =>
+                    e.paidBy === id || (e.splitAmong && e.splitAmong.includes(id))
+                );
+
+                let confirmRemove = true;
+                if (usedInExpenses) {
+                    const response = await showModal({
+                        title: 'Remove Person',
+                        message: `"${person.name}" is referenced in expenses. Remove them from all expenses?`,
+                        confirmText: 'Yes, Remove',
+                        cancelText: 'Cancel'
+                    });
+                    if (!response) return;
+
+                    state.expenses = state.expenses.filter(e => {
+                        if (e.paidBy === id) return false;
+                        if (e.splitAmong) {
+                            e.splitAmong = e.splitAmong.filter(pid => pid !== id);
+                        }
+                        return true;
+                    });
+                } else {
+                    const response = await showModal({
+                        title: 'Remove Person',
+                        message: `Remove "${person.name}" from the trip?`,
+                        confirmText: 'Remove',
+                        cancelText: 'Cancel'
+                    });
+                    if (!response) return;
+                }
+
+                state.people = state.people.filter(p => p.id !== id);
+                saveState();
+                render();
+            };
+
+            window.toggleExpenseForm = function () {
+                expenseFormOpen = !expenseFormOpen;
+                render();
+            };
+
+            window.addExpense = async function () {
+                const desc = document.getElementById('expDesc')?.value?.trim();
+                const amountRaw = document.getElementById('expAmount')?.value?.trim();
+                const payerId = document.getElementById('expPayer')?.value;
+
+                if (!desc) {
+                    await showModal({
+                        title: 'Missing Description',
+                        message: 'Please enter a description for this expense.',
+                        confirmText: 'OK',
+                        cancelText: ''
+                    });
+                    return;
+                }
+                if (!amountRaw || parseFloat(amountRaw) <= 0) {
+                    await showModal({
+                        title: 'Invalid Amount',
+                        message: 'Please enter a positive amount.',
+                        confirmText: 'OK',
+                        cancelText: ''
+                    });
+                    return;
+                }
+
+                const amount = Engine.roundTwo(parseFloat(amountRaw));
+                if (isNaN(amount) || amount <= 0) {
+                    await showModal({
+                        title: 'Invalid Amount',
+                        message: 'Please enter a valid number.',
+                        confirmText: 'OK',
+                        cancelText: ''
+                    });
+                    return;
+                }
+
+                const checkboxes = document.querySelectorAll('#splitCheckboxes input[type="checkbox"]:checked');
+                const splitAmong = Array.from(checkboxes).map(cb => cb.value);
+
+                if (splitAmong.length < 1) {
+                    await showModal({
+                        title: 'No Split',
+                        message: 'Select at least one person to split with.',
+                        confirmText: 'OK',
+                        cancelText: ''
+                    });
+                    return;
+                }
+
+                if (!state.people.some(p => p.id === payerId)) {
+                    await showModal({
+                        title: 'Invalid Payer',
+                        message: 'Please select a valid payer.',
+                        confirmText: 'OK',
+                        cancelText: ''
+                    });
+                    return;
+                }
+
+                const expense = {
+                    id: generateId(),
+                    description: desc,
+                    amount: amount,
+                    paidBy: payerId,
+                    splitAmong: splitAmong,
+                    date: new Date().toISOString().slice(0, 10)
+                };
+
+                state.expenses.push(expense);
+                saveState();
+
+                // Clear form
+                const descInput = document.getElementById('expDesc');
+                const amountInput = document.getElementById('expAmount');
+                if (descInput) descInput.value = '';
+                if (amountInput) amountInput.value = '';
+
+                // Close form on mobile
+                expenseFormOpen = false;
+                render();
+            };
+
+            window.deleteExpense = async function (id) {
+                const response = await showModal({
+                    title: 'Delete Expense',
+                    message: 'Are you sure you want to delete this expense?',
+                    confirmText: 'Delete',
+                    cancelText: 'Cancel'
+                });
+                if (!response) return;
+
+                state.expenses = state.expenses.filter(e => e.id !== id);
+                saveState();
+                render();
+            };
+
+            window.exportData = function () {
+                const data = JSON.stringify(state, null, 2);
+                const blob = new Blob([data], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `expenses-${state.tripName.toLowerCase().replace(/\s+/g, '-')}-${new Date().toISOString().slice(0, 10)}.json`;
+                a.click();
+                URL.revokeObjectURL(url);
+            };
+
+            window.importData = function (event) {
+                const file = event.target.files[0];
+                if (!file) return;
+
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    try {
+                        const imported = JSON.parse(e.target.result);
+                        if (!imported.people || !imported.expenses) {
+                            showModal({
+                                title: 'Invalid File',
+                                message: 'The file format is invalid. Missing people or expenses.',
+                                confirmText: 'OK',
+                                cancelText: ''
+                            });
+                            return;
+                        }
+                        showModal({
+                            title: 'Import Data',
+                            message: `This will replace ALL current data with ${imported.people.length} people and ${imported.expenses.length} expenses. Continue?`,
+                            confirmText: 'Import',
+                            cancelText: 'Cancel'
+                        }).then((confirmed) => {
+                            if (confirmed) {
+                                state = imported;
+                                if (!state.tripName) state.tripName = 'My Trip';
+                                saveState();
+                                render();
+                            }
+                        });
+                    } catch (err) {
+                        showModal({
+                            title: 'Import Error',
+                            message: 'Error reading file: ' + err.message,
+                            confirmText: 'OK',
+                            cancelText: ''
+                        });
+                    }
+                };
+                reader.readAsText(file);
+                event.target.value = ''; // Reset file input
+            };
+
+            window.resetAll = async function () {
+                const response = await showModal({
+                    title: '⚠️ Reset All Data',
+                    message: 'This will permanently delete ALL data (people and expenses). This cannot be undone!',
+                    confirmText: 'Yes, Delete Everything',
+                    cancelText: 'Cancel'
+                });
+                if (!response) return;
+
+                state.people = [];
+                state.expenses = [];
+                state.tripName = 'My Trip';
+                saveState();
+                render();
+            };
+
+            // ---- Render ----
+            function render() {
+                const app = document.getElementById('app');
+                const { people, expenses, tripName } = state;
+                const balances = Engine.calculate(people, expenses);
+                const settlements = Engine.computeSettlements(people, expenses);
+                const totalExpenses = expenses.reduce((sum, e) => sum + e.amount, 0);
+
+                // Create a map for quick name lookup
+                const nameMap = {};
+                people.forEach(p => nameMap[p.id] = p.name);
+
+                let html = `
+                <div class="app">
+                    <div class="card">
+                        <div class="flex-between">
+                            <h1>🧾 ${tripName}</h1>
+                            <div style="display:flex; gap:0.5rem; align-items:center;">
+                                <button class="theme-toggle" onclick="window.toggleTheme()">${darkMode ? '☀️' : '🌙'}</button>
+                                <button class="danger" onclick="window.resetAll()">Reset All</button>
+                            </div>
+                        </div>
+                        <div class="flex-row" style="margin-top:0.2rem;">
+                            <span class="text-muted">${people.length} people · ${expenses.length} expenses · total $${totalExpenses.toFixed(2)}</span>
+                        </div>
+                    </div>
+
+                    <!-- People -->
+                    <div class="card">
+                        <div class="flex-between">
+                            <h2>👥 People</h2>
+                            <span class="badge">${people.length}</span>
+                        </div>
+                        <div class="flex-row" style="margin-bottom:0.5rem;">
+                            <button class="primary" onclick="window.addPerson()">Add Person</button>
+                        </div>
+                        <div class="pill-group">
+                            ${people.map(p => `
+                                <span class="pill">
+                                    ${p.name}
+                                    <button class="edit" onclick="window.editPerson('${p.id}')">✎</button>
+                                    <button class="remove" onclick="window.removePerson('${p.id}')">✕</button>
+                                </span>
+                            `).join('')}
+                            ${people.length === 0 ? '<span class="text-muted">Add at least 2 people</span>' : ''}
+                        </div>
+                    </div>
+
+                    <!-- Add Expense (Collapsible) -->
+                    <div class="card">
+                        <div class="collapse-header" onclick="window.toggleExpenseForm()">
+                            <h2>➕ Add Expense</h2>
+                            <span>${expenseFormOpen ? '▼' : '▶'}</span>
+                        </div>
+                        <div class="collapse-content ${expenseFormOpen ? 'open' : ''}">
+                            <div class="flex-row" style="flex-wrap:wrap; gap:0.4rem 0.6rem; margin-top:0.5rem;">
+                                <input type="text" id="expDesc" placeholder="Description" style="flex:1; min-width:100px;" />
+                                <input type="number" id="expAmount" placeholder="0.00" step="0.01" style="width:110px;" />
+                                <select id="expPayer" style="min-width:80px;">
+                                    ${people.map(p => `<option value="${p.id}">${p.name}</option>`).join('')}
+                                    ${people.length === 0 ? '<option value="">—</option>' : ''}
+                                </select>
+                            </div>
+                            <div class="checkbox-group" id="splitCheckboxes" style="margin:0.4rem 0 0.2rem;">
+                                ${people.map(p => `
+                                    <label><input type="checkbox" value="${p.id}" checked /> ${p.name}</label>
+                                `).join('')}
+                                ${people.length === 0 ? '<span class="text-muted">Add people first</span>' : ''}
+                            </div>
+                            <button class="primary" onclick="window.addExpense()" ${people.length < 2 ? 'disabled' : ''}>Add expense</button>
+                        </div>
+                    </div>
+
+                    <!-- Expense list -->
+                    <div class="card">
+                        <div class="flex-between">
+                            <h2>📋 Expenses</h2>
+                            <span class="badge">${expenses.length}</span>
+                        </div>
+                        ${expenses.length === 0 ? '<div class="empty-state">No expenses yet.</div>' : `
+                        <div style="overflow-x:auto;">
+                            <table>
+                                <thead><tr><th>Date</th><th>Description</th><th>Amount</th><th>Paid by</th><th>Split</th><th></th></tr></thead>
+                                <tbody>
+                                    ${expenses.slice().reverse().map(exp => `
+                                        <tr class="expense-row">
+                                            <td style="white-space:nowrap;">${exp.date || ''}</td>
+                                            <td>${exp.description}</td>
+                                            <td>$${exp.amount.toFixed(2)}</td>
+                                            <td>${nameMap[exp.paidBy] || 'Unknown'}</td>
+                                            <td>${(exp.splitAmong || []).map(id => nameMap[id] || '?').join(', ')}</td>
+                                            <td class="actions">
+                                                <button onclick="window.deleteExpense('${exp.id}')" class="danger" style="padding:0.1rem 0.6rem;">✕</button>
+                                            </td>
+                                        </tr>
+                                    `).join('')}
+                                </tbody>
+                            </table>
+                        </div>
+                        `}
+                    </div>
+
+                    <!-- Balance summary -->
+                    <div class="card">
+                        <h2>⚖️ Balances</h2>
+                        ${people.length === 0 ? '<div class="empty-state">No people</div>' : `
+                        <div style="overflow-x:auto;">
+                            <table>
+                                <thead><tr><th>Person</th><th>Paid</th><th>Fair share</th><th>Balance</th></tr></thead>
+                                <tbody>
+                                    ${Object.values(balances).map(b => {
+                    const cls = b.balance > 0.005 ? 'text-green' : (b.balance < -0.005 ? 'text-red' : '');
+                    return `<tr><td><strong>${b.name}</strong></td><td>$${b.paid.toFixed(2)}</td><td>$${b.share.toFixed(2)}</td><td class="${cls}">$${b.balance.toFixed(2)}</td></tr>`;
+                }).join('')}
+                                </tbody>
+                            </table>
+                        </div>
+                        `}
+                    </div>
+
+                    <!-- Settlement plan -->
+                    <div class="card" style="border-left:6px solid var(--accent);">
+                        <h2>🔄 Settlement plan</h2>
+                        ${settlements.length === 0 ? '<div class="empty-state">✨ Everyone is settled up!</div>' :
+                        settlements.map(t => `
+                                <div class="settlement-card">
+                                    <span><strong>${t.from}</strong> <span class="arrow">➜</span> <strong>${t.to}</strong></span>
+                                    <span class="text-large">$${t.amount.toFixed(2)}</span>
+                                </div>
+                            `).join('')
+                    }
+                    </div>
+
+                    <!-- Export/Import at the bottom -->
+                    <div class="card">
+                        <div class="flex-between">
+                            <h2>💾 Data Management</h2>
+                        </div>
+                        <div class="flex-row">
+                            <button class="secondary" onclick="window.exportData()">📤 Export Data</button>
+                            <label class="file-label" for="importFile">📥 Import Data</label>
+                            <input type="file" id="importFile" class="import-input" accept=".json" onchange="window.importData(event)" />
+                            <span class="text-muted" style="font-size:0.8rem;">Backup or restore your data</span>
+                        </div>
+                    </div>
+                </div>
+            `;
+                app.innerHTML = html;
+            }
+
+            // ---- Init ----
+            loadState();
+            render();
+        })();
+    </script>
+</body>
+
+</html>
