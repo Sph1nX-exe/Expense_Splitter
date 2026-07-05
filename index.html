@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5" />
@@ -14,7 +13,7 @@
             --text-secondary: #64748b;
             --border-light: #eef2f6;
             --border-input: #d0d9e6;
-            --shadow-card: 0 6px 18px rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.03);
+            --shadow-card: 0 6px 18px rgba(0,0,0,0.04), 0 2px 4px rgba(0,0,0,0.03);
             --accent: #3b82f6;
             --accent-hover: #2563eb;
             --danger-bg: #fee2e2;
@@ -30,7 +29,7 @@
             --input-bg: #ffffff;
             --input-text: #1e293b;
             --collapse-bg: #f8fafc;
-            --modal-overlay: rgba(0, 0, 0, 0.5);
+            --modal-overlay: rgba(0,0,0,0.5);
         }
 
         [data-theme="dark"] {
@@ -40,7 +39,7 @@
             --text-secondary: #94a3b8;
             --border-light: #334155;
             --border-input: #475569;
-            --shadow-card: 0 6px 18px rgba(0, 0, 0, 0.3);
+            --shadow-card: 0 6px 18px rgba(0,0,0,0.3);
             --accent: #60a5fa;
             --accent-hover: #3b82f6;
             --danger-bg: #7f1d1d;
@@ -56,7 +55,7 @@
             --input-bg: #1e293b;
             --input-text: #e2e8f0;
             --collapse-bg: #1e293b;
-            --modal-overlay: rgba(0, 0, 0, 0.7);
+            --modal-overlay: rgba(0,0,0,0.7);
         }
 
         * {
@@ -64,7 +63,6 @@
             margin: 0;
             padding: 0;
         }
-
         body {
             background: var(--bg-primary);
             color: var(--text-primary);
@@ -75,35 +73,18 @@
             transition: background 0.2s, color 0.2s;
             min-height: 100vh;
         }
-
         .app {
             max-width: 860px;
             width: 100%;
         }
-
-        h1,
-        h2,
-        h3 {
+        h1, h2, h3 {
             font-weight: 600;
             letter-spacing: -0.02em;
             color: var(--text-primary);
         }
-
-        h1 {
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-        }
-
-        h2 {
-            font-size: 1.3rem;
-            margin: 1.2rem 0 0.6rem;
-        }
-
-        h3 {
-            font-size: 1.1rem;
-            margin: 1rem 0 0.4rem;
-        }
-
+        h1 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+        h2 { font-size: 1.3rem; margin: 1.2rem 0 0.6rem; }
+        h3 { font-size: 1.1rem; margin: 1rem 0 0.4rem; }
         .card {
             background: var(--bg-card);
             border-radius: 20px;
@@ -113,14 +94,12 @@
             border: 1px solid var(--border-light);
             transition: background 0.2s, border 0.2s;
         }
-
         .flex-row {
             display: flex;
             flex-wrap: wrap;
             gap: 0.6rem 0.8rem;
             align-items: center;
         }
-
         .flex-between {
             display: flex;
             justify-content: space-between;
@@ -128,10 +107,7 @@
             flex-wrap: wrap;
             gap: 0.5rem;
         }
-
-        input,
-        select,
-        button {
+        input, select, button {
             font: inherit;
             border-radius: 40px;
             border: 1px solid var(--border-input);
@@ -140,14 +116,11 @@
             color: var(--input-text);
             transition: 0.15s;
         }
-
-        input:focus,
-        select:focus {
+        input:focus, select:focus {
             outline: none;
             border-color: var(--accent);
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+            box-shadow: 0 0 0 3px rgba(59,130,246,0.2);
         }
-
         button {
             background: var(--pill-bg);
             border: none;
@@ -162,48 +135,35 @@
             white-space: nowrap;
             transition: background 0.15s, color 0.15s;
         }
-
         button.primary {
             background: var(--accent);
             color: white;
-            box-shadow: 0 2px 6px rgba(59, 130, 246, 0.25);
+            box-shadow: 0 2px 6px rgba(59,130,246,0.25);
         }
-
-        button.primary:hover {
-            background: var(--accent-hover);
-        }
-
+        button.primary:hover { background: var(--accent-hover); }
         button.danger {
             background: var(--danger-bg);
             color: var(--danger-text);
         }
-
-        button.danger:hover {
-            opacity: 0.8;
-        }
-
+        button.danger:hover { opacity: 0.8; }
         button.secondary {
             background: var(--text-secondary);
             color: white;
         }
-
         button.outline {
             background: transparent;
             border: 1px solid var(--border-input);
         }
-
         button:disabled {
             opacity: 0.5;
             pointer-events: none;
         }
-
         .pill-group {
             display: flex;
             flex-wrap: wrap;
             gap: 0.4rem 0.6rem;
             align-items: center;
         }
-
         .pill {
             background: var(--pill-bg);
             padding: 0.2rem 0.8rem;
@@ -214,7 +174,6 @@
             font-size: 0.9rem;
             color: var(--text-primary);
         }
-
         .pill .remove {
             background: transparent;
             border: none;
@@ -224,11 +183,7 @@
             line-height: 1;
             padding: 0 0.1rem;
         }
-
-        .pill .remove:hover {
-            color: var(--red);
-        }
-
+        .pill .remove:hover { color: var(--red); }
         .pill .edit {
             background: transparent;
             border: none;
@@ -237,61 +192,37 @@
             cursor: pointer;
             padding: 0 0.1rem;
         }
-
-        .pill .edit:hover {
-            color: var(--accent);
-        }
-
+        .pill .edit:hover { color: var(--accent); }
         table {
             width: 100%;
             border-collapse: collapse;
             font-size: 0.92rem;
             color: var(--text-primary);
         }
-
         th {
             text-align: left;
             padding: 0.4rem 0.2rem 0.6rem 0;
             font-weight: 600;
             border-bottom: 1px solid var(--table-border);
         }
-
         td {
             padding: 0.5rem 0.2rem 0.5rem 0;
             border-bottom: 1px solid var(--table-border-light);
             vertical-align: middle;
         }
-
         .expense-row .actions {
             display: flex;
             gap: 0.4rem;
         }
-
         .expense-row .actions button {
             padding: 0.2rem 0.7rem;
             font-size: 0.8rem;
             border-radius: 30px;
         }
-
-        .text-muted {
-            color: var(--text-secondary);
-        }
-
-        .text-green {
-            color: var(--green);
-            font-weight: 500;
-        }
-
-        .text-red {
-            color: var(--red);
-            font-weight: 500;
-        }
-
-        .text-large {
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
-
+        .text-muted { color: var(--text-secondary); }
+        .text-green { color: var(--green); font-weight: 500; }
+        .text-red { color: var(--red); font-weight: 500; }
+        .text-large { font-size: 1.2rem; font-weight: 600; }
         .settlement-card {
             background: var(--settlement-bg);
             border-radius: 16px;
@@ -305,17 +236,14 @@
             border-left: 6px solid var(--accent);
             color: var(--text-primary);
         }
-
         .settlement-card .arrow {
             font-size: 1.3rem;
             margin: 0 0.3rem;
         }
-
         .inline-icon {
             font-size: 1.2rem;
             line-height: 1;
         }
-
         .checkbox-group {
             display: flex;
             flex-wrap: wrap;
@@ -323,7 +251,6 @@
             align-items: center;
             padding: 0.2rem 0;
         }
-
         .checkbox-group label {
             display: flex;
             align-items: center;
@@ -332,7 +259,6 @@
             cursor: pointer;
             color: var(--text-primary);
         }
-
         .badge {
             background: var(--badge-bg);
             color: var(--badge-text);
@@ -340,42 +266,21 @@
             border-radius: 40px;
             font-size: 0.8rem;
         }
-
         hr {
             margin: 1rem 0 0.6rem;
             border: none;
             border-top: 1px solid var(--border-light);
         }
-
         .empty-state {
             padding: 1rem 0.4rem;
             color: var(--text-secondary);
             text-align: center;
         }
-
-        .flex-grow {
-            flex: 1;
-        }
-
-        .gap-1 {
-            gap: 0.6rem;
-        }
-
-        .mt-1 {
-            margin-top: 0.6rem;
-        }
-
-        .mb-1 {
-            margin-bottom: 0.5rem;
-        }
-
-        .truncate {
-            max-width: 140px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
+        .flex-grow { flex: 1; }
+        .gap-1 { gap: 0.6rem; }
+        .mt-1 { margin-top: 0.6rem; }
+        .mb-1 { margin-bottom: 0.5rem; }
+        .truncate { max-width: 140px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
         .theme-toggle {
             background: var(--pill-bg);
             border: 1px solid var(--border-input);
@@ -386,11 +291,7 @@
             line-height: 1;
             color: var(--text-primary);
         }
-
-        .theme-toggle:hover {
-            opacity: 0.7;
-        }
-
+        .theme-toggle:hover { opacity: 0.7; }
         .collapse-header {
             cursor: pointer;
             user-select: none;
@@ -398,25 +299,18 @@
             justify-content: space-between;
             align-items: center;
         }
-
-        .collapse-header:hover {
-            opacity: 0.8;
-        }
-
+        .collapse-header:hover { opacity: 0.8; }
         .collapse-content {
             overflow: hidden;
             transition: max-height 0.3s ease;
             max-height: 0;
         }
-
         .collapse-content.open {
             max-height: 800px;
         }
-
         .import-input {
             display: none;
         }
-
         .file-label {
             cursor: pointer;
             background: var(--pill-bg);
@@ -427,10 +321,7 @@
             align-items: center;
             gap: 0.3rem;
         }
-
-        .file-label:hover {
-            opacity: 0.8;
-        }
+        .file-label:hover { opacity: 0.8; }
 
         /* ----- MODAL ----- */
         .modal-overlay {
@@ -447,216 +338,167 @@
             padding: 1rem;
             animation: fadeIn 0.2s ease;
         }
-
         .modal {
             background: var(--bg-card);
             border-radius: 20px;
             padding: 2rem;
             max-width: 420px;
             width: 100%;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
             animation: slideUp 0.3s ease;
         }
-
         .modal h3 {
             margin-top: 0;
             margin-bottom: 0.5rem;
         }
-
         .modal p {
             color: var(--text-secondary);
             margin-bottom: 1.2rem;
         }
-
         .modal input {
             width: 100%;
             margin-bottom: 1rem;
             padding: 0.7rem 1rem;
             border-radius: 12px;
         }
-
         .modal .modal-actions {
             display: flex;
             gap: 0.5rem;
             justify-content: flex-end;
         }
-
         .modal .modal-actions button {
             padding: 0.5rem 1.5rem;
         }
-
         .modal .modal-actions .cancel {
             background: var(--pill-bg);
             color: var(--text-primary);
         }
-
         .modal .modal-actions .confirm {
             background: var(--accent);
             color: white;
         }
-
-        .modal .modal-actions .confirm:hover {
-            background: var(--accent-hover);
-        }
+        .modal .modal-actions .confirm:hover { background: var(--accent-hover); }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
-
         @keyframes slideUp {
-            from {
-                transform: translateY(20px);
-                opacity: 0;
-            }
-
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
         @media (max-width: 600px) {
-            .card {
-                padding: 1rem;
-            }
-
-            .flex-row {
-                gap: 0.4rem;
-            }
-
-            table {
-                font-size: 0.78rem;
-            }
-
-            .settlement-card {
-                flex-direction: column;
-                align-items: stretch;
-                text-align: center;
-            }
-
-            input,
-            select,
-            button {
-                font-size: 0.9rem;
-            }
-
-            .expense-row .actions button {
-                padding: 0.1rem 0.5rem;
-                font-size: 0.7rem;
-            }
-
-            .modal {
-                padding: 1.5rem;
-                margin: 1rem;
-            }
+            .card { padding: 1rem; }
+            .flex-row { gap: 0.4rem; }
+            table { font-size: 0.78rem; }
+            .settlement-card { flex-direction: column; align-items: stretch; text-align: center; }
+            input, select, button { font-size: 0.9rem; }
+            .expense-row .actions button { padding: 0.1rem 0.5rem; font-size: 0.7rem; }
+            .modal { padding: 1.5rem; margin: 1rem; }
         }
     </style>
 </head>
-
 <body>
-    <div class="app" id="app"></div>
+<div class="app" id="app"></div>
 
-    <script>
-        // ---- Engine: Core logic separated from UI ----
-        const Engine = {
-            roundTwo: (v) => Math.round((v + Number.EPSILON) * 100) / 100,
-
-            calculate: (people, expenses) => {
-                const balances = {};
-                people.forEach(p => {
-                    balances[p.id] = {
-                        id: p.id,
-                        name: p.name,
-                        paid: 0,
-                        share: 0,
-                        balance: 0
-                    };
-                });
-
-                expenses.forEach(exp => {
-                    if (balances[exp.paidBy]) {
-                        balances[exp.paidBy].paid += exp.amount;
-                    }
-                    const splitAmong = exp.splitAmong || [];
-                    if (splitAmong.length > 0) {
-                        const perPerson = exp.amount / splitAmong.length;
-                        splitAmong.forEach(id => {
-                            if (balances[id]) {
-                                balances[id].share += perPerson;
-                            }
-                        });
-                    }
-                });
-
-                Object.values(balances).forEach(b => {
-                    b.balance = Engine.roundTwo(b.paid - b.share);
-                });
-                return balances;
-            },
-
-            computeSettlements: (people, expenses) => {
-                const balances = Engine.calculate(people, expenses);
-                const balanceArray = Object.values(balances);
-                const debtors = balanceArray.filter(b => b.balance < -0.005).map(b => ({ ...b }));
-                const creditors = balanceArray.filter(b => b.balance > 0.005).map(b => ({ ...b }));
-
-                debtors.sort((a, b) => a.balance - b.balance);
-                creditors.sort((a, b) => b.balance - a.balance);
-
-                const transactions = [];
-                let i = 0, j = 0;
-                while (i < debtors.length && j < creditors.length) {
-                    const d = debtors[i];
-                    const c = creditors[j];
-                    const amount = Math.min(Math.abs(d.balance), c.balance);
-                    if (amount > 0.001) {
-                        transactions.push({
-                            from: d.name,
-                            fromId: d.id,
-                            to: c.name,
-                            toId: c.id,
-                            amount: Engine.roundTwo(amount)
-                        });
-                    }
-                    d.balance += amount;
-                    c.balance -= amount;
-                    if (Math.abs(d.balance) < 0.005) i++;
-                    if (Math.abs(c.balance) < 0.005) j++;
+<script>
+    // ---- Engine: Core logic separated from UI ----
+    const Engine = {
+        roundTwo: (v) => Math.round((v + Number.EPSILON) * 100) / 100,
+        
+        calculate: (people, expenses) => {
+            const balances = {};
+            people.forEach(p => {
+                balances[p.id] = { 
+                    id: p.id,
+                    name: p.name, 
+                    paid: 0, 
+                    share: 0,
+                    balance: 0
+                };
+            });
+            
+            expenses.forEach(exp => {
+                if (balances[exp.paidBy]) {
+                    balances[exp.paidBy].paid += exp.amount;
                 }
-                return transactions;
+                const splitAmong = exp.splitAmong || [];
+                if (splitAmong.length > 0) {
+                    const perPerson = exp.amount / splitAmong.length;
+                    splitAmong.forEach(id => {
+                        if (balances[id]) {
+                            balances[id].share += perPerson;
+                        }
+                    });
+                }
+            });
+            
+            Object.values(balances).forEach(b => {
+                b.balance = Engine.roundTwo(b.paid - b.share);
+            });
+            return balances;
+        },
+        
+        computeSettlements: (people, expenses) => {
+            const balances = Engine.calculate(people, expenses);
+            const balanceArray = Object.values(balances);
+            const debtors = balanceArray.filter(b => b.balance < -0.005).map(b => ({ ...b }));
+            const creditors = balanceArray.filter(b => b.balance > 0.005).map(b => ({ ...b }));
+            
+            debtors.sort((a, b) => a.balance - b.balance);
+            creditors.sort((a, b) => b.balance - a.balance);
+            
+            const transactions = [];
+            let i = 0, j = 0;
+            while (i < debtors.length && j < creditors.length) {
+                const d = debtors[i];
+                const c = creditors[j];
+                const amount = Math.min(Math.abs(d.balance), c.balance);
+                if (amount > 0.001) {
+                    transactions.push({ 
+                        from: d.name, 
+                        fromId: d.id,
+                        to: c.name, 
+                        toId: c.id,
+                        amount: Engine.roundTwo(amount) 
+                    });
+                }
+                d.balance += amount;
+                c.balance -= amount;
+                if (Math.abs(d.balance) < 0.005) i++;
+                if (Math.abs(c.balance) < 0.005) j++;
             }
-        };
+            return transactions;
+        }
+    };
 
-        // ---- State Management ----
-        const STORAGE_KEY = 'expense-splitter:data';
-        const THEME_KEY = 'expense-splitter:theme';
+    // ---- State Management ----
+    const STORAGE_KEY = 'expense-splitter:data';
+    const THEME_KEY = 'expense-splitter:theme';
+    
+    let state = {
+        tripName: 'My Trip',
+        people: [],
+        expenses: []
+    };
+    let darkMode = false;
+    let expenseFormOpen = false;
 
-        let state = {
-            tripName: 'My Trip',
-            people: [],
-            expenses: []
-        };
-        let darkMode = false;
-        let expenseFormOpen = false;
-
-        function loadState() {
-            try {
-                const raw = localStorage.getItem(STORAGE_KEY);
-                if (raw) {
-                    const parsed = JSON.parse(raw);
-                    state = parsed;
-                    if (!state.people) state.people = [];
-                    if (!state.expenses) state.expenses = [];
-                    if (!state.tripName) state.tripName = 'My Trip';
-                }
-            } catch (_) { }
-
+    function loadState() {
+        try {
+            const raw = localStorage.getItem(STORAGE_KEY);
+            if (raw) {
+                const parsed = JSON.parse(raw);
+                state = parsed;
+                if (!state.people) state.people = [];
+                if (!state.expenses) state.expenses = [];
+                if (!state.tripName) state.tripName = 'My Trip';
+            }
+        } catch (_) {}
+        
+        // Load theme preference
+        try {
             const theme = localStorage.getItem(THEME_KEY);
             if (theme === 'dark') {
                 darkMode = true;
@@ -665,37 +507,48 @@
                 darkMode = false;
                 document.documentElement.removeAttribute('data-theme');
             }
-        }
-
-        function saveState() {
+        } catch (_) {}
+    }
+    
+    function saveState() {
+        try {
             localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-        }
-
-        // ---- GLOBAL toggleTheme (exposed to window) ----
-        window.toggleTheme = function () {
-            darkMode = !darkMode;
-            if (darkMode) {
-                document.documentElement.setAttribute('data-theme', 'dark');
+        } catch (_) {}
+    }
+    
+    // ---- toggleTheme with multiple approaches for GitHub Pages ----
+    function toggleTheme() {
+        darkMode = !darkMode;
+        if (darkMode) {
+            document.documentElement.setAttribute('data-theme', 'dark');
+            try {
                 localStorage.setItem(THEME_KEY, 'dark');
-            } else {
-                document.documentElement.removeAttribute('data-theme');
+            } catch (_) {}
+        } else {
+            document.documentElement.removeAttribute('data-theme');
+            try {
                 localStorage.removeItem(THEME_KEY);
-            }
-            render();
-        };
-
-        function generateId() {
-            return Date.now().toString(36) + Math.random().toString(36).slice(2, 9);
+            } catch (_) {}
         }
+        render();
+    }
+    
+    // Expose toggleTheme globally (multiple ways for GitHub Pages)
+    window.toggleTheme = toggleTheme;
+    window.toggleThemeHandler = toggleTheme;
 
-        // ---- Custom Modal System ----
-        function showModal(options) {
-            return new Promise((resolve) => {
-                const { title, message, inputLabel, inputType = 'text', confirmText = 'Confirm', cancelText = 'Cancel' } = options;
+    function generateId() { 
+        return Date.now().toString(36) + Math.random().toString(36).slice(2, 9); 
+    }
 
-                const overlay = document.createElement('div');
-                overlay.className = 'modal-overlay';
-                overlay.innerHTML = `
+    // ---- Custom Modal System ----
+    function showModal(options) {
+        return new Promise((resolve) => {
+            const { title, message, inputLabel, inputType = 'text', confirmText = 'Confirm', cancelText = 'Cancel' } = options;
+            
+            const overlay = document.createElement('div');
+            overlay.className = 'modal-overlay';
+            overlay.innerHTML = `
                 <div class="modal">
                     <h3>${title}</h3>
                     <p>${message}</p>
@@ -706,321 +559,321 @@
                     </div>
                 </div>
             `;
-                document.body.appendChild(overlay);
-
-                // Store resolve function
-                window._modalResolve = resolve;
-
-                // Focus input if exists
-                const input = document.getElementById('modalInput');
-                if (input) {
-                    setTimeout(() => input.focus(), 100);
-                    input.addEventListener('keydown', (e) => {
-                        if (e.key === 'Enter') {
-                            const val = input.value;
-                            overlay.remove();
-                            window._modalResolve(val);
-                        }
-                        if (e.key === 'Escape') {
-                            overlay.remove();
-                            window._modalResolve(null);
-                        }
-                    });
-                }
-
-                // Close on overlay click
-                overlay.addEventListener('click', (e) => {
-                    if (e.target === overlay) {
+            document.body.appendChild(overlay);
+            
+            // Store resolve function
+            window._modalResolve = resolve;
+            
+            // Focus input if exists
+            const input = document.getElementById('modalInput');
+            if (input) {
+                setTimeout(() => input.focus(), 100);
+                input.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter') {
+                        const val = input.value;
+                        overlay.remove();
+                        window._modalResolve(val);
+                    }
+                    if (e.key === 'Escape') {
                         overlay.remove();
                         window._modalResolve(null);
                     }
                 });
+            }
+            
+            // Close on overlay click
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) {
+                    overlay.remove();
+                    window._modalResolve(null);
+                }
             });
+        });
+    }
+
+    // ---- UI Actions (exposed to window) ----
+    window.addPerson = async function() {
+        const name = await showModal({
+            title: 'Add Person',
+            message: 'Enter the name of the person joining this trip:',
+            inputLabel: 'Name',
+            confirmText: 'Add',
+            cancelText: 'Cancel'
+        });
+        
+        if (!name || name.trim() === '') return;
+        if (state.people.some(p => p.name.toLowerCase() === name.trim().toLowerCase())) {
+            await showModal({
+                title: 'Duplicate Name',
+                message: 'A person with this name already exists. Please use a different name.',
+                confirmText: 'OK',
+                cancelText: ''
+            });
+            return;
         }
+        state.people.push({ 
+            id: generateId(), 
+            name: name.trim() 
+        });
+        saveState();
+        render();
+    };
 
-        // ---- UI Actions (exposed to window) ----
-        window.addPerson = async function () {
-            const name = await showModal({
-                title: 'Add Person',
-                message: 'Enter the name of the person joining this trip:',
-                inputLabel: 'Name',
-                confirmText: 'Add',
-                cancelText: 'Cancel'
+    window.editPerson = async function(id) {
+        const person = state.people.find(p => p.id === id);
+        if (!person) return;
+        
+        const newName = await showModal({
+            title: 'Edit Person',
+            message: 'Update the name:',
+            inputLabel: person.name,
+            confirmText: 'Save',
+            cancelText: 'Cancel'
+        });
+        
+        if (!newName || newName.trim() === '') return;
+        if (state.people.some(p => p.id !== id && p.name.toLowerCase() === newName.trim().toLowerCase())) {
+            await showModal({
+                title: 'Duplicate Name',
+                message: 'A person with this name already exists.',
+                confirmText: 'OK',
+                cancelText: ''
             });
+            return;
+        }
+        person.name = newName.trim();
+        saveState();
+        render();
+    };
 
-            if (!name || name.trim() === '') return;
-            if (state.people.some(p => p.name.toLowerCase() === name.trim().toLowerCase())) {
-                await showModal({
-                    title: 'Duplicate Name',
-                    message: 'A person with this name already exists. Please use a different name.',
-                    confirmText: 'OK',
-                    cancelText: ''
-                });
-                return;
-            }
-            state.people.push({
-                id: generateId(),
-                name: name.trim()
-            });
-            saveState();
-            render();
-        };
-
-        window.editPerson = async function (id) {
-            const person = state.people.find(p => p.id === id);
-            if (!person) return;
-
-            const newName = await showModal({
-                title: 'Edit Person',
-                message: 'Update the name:',
-                inputLabel: person.name,
-                confirmText: 'Save',
-                cancelText: 'Cancel'
-            });
-
-            if (!newName || newName.trim() === '') return;
-            if (state.people.some(p => p.id !== id && p.name.toLowerCase() === newName.trim().toLowerCase())) {
-                await showModal({
-                    title: 'Duplicate Name',
-                    message: 'A person with this name already exists.',
-                    confirmText: 'OK',
-                    cancelText: ''
-                });
-                return;
-            }
-            person.name = newName.trim();
-            saveState();
-            render();
-        };
-
-        window.removePerson = async function (id) {
-            const person = state.people.find(p => p.id === id);
-            if (!person) return;
-
-            const usedInExpenses = state.expenses.some(e =>
-                e.paidBy === id || (e.splitAmong && e.splitAmong.includes(id))
-            );
-
-            if (usedInExpenses) {
-                const response = await showModal({
-                    title: 'Remove Person',
-                    message: `"${person.name}" is referenced in expenses. Remove them from all expenses?`,
-                    confirmText: 'Yes, Remove',
-                    cancelText: 'Cancel'
-                });
-                if (!response) return;
-
-                state.expenses = state.expenses.filter(e => {
-                    if (e.paidBy === id) return false;
-                    if (e.splitAmong) {
-                        e.splitAmong = e.splitAmong.filter(pid => pid !== id);
-                    }
-                    return true;
-                });
-            } else {
-                const response = await showModal({
-                    title: 'Remove Person',
-                    message: `Remove "${person.name}" from the trip?`,
-                    confirmText: 'Remove',
-                    cancelText: 'Cancel'
-                });
-                if (!response) return;
-            }
-
-            state.people = state.people.filter(p => p.id !== id);
-            saveState();
-            render();
-        };
-
-        window.toggleExpenseForm = function () {
-            expenseFormOpen = !expenseFormOpen;
-            render();
-        };
-
-        window.addExpense = async function () {
-            const desc = document.getElementById('expDesc')?.value?.trim();
-            const amountRaw = document.getElementById('expAmount')?.value?.trim();
-            const payerId = document.getElementById('expPayer')?.value;
-
-            if (!desc) {
-                await showModal({
-                    title: 'Missing Description',
-                    message: 'Please enter a description for this expense.',
-                    confirmText: 'OK',
-                    cancelText: ''
-                });
-                return;
-            }
-            if (!amountRaw || parseFloat(amountRaw) <= 0) {
-                await showModal({
-                    title: 'Invalid Amount',
-                    message: 'Please enter a positive amount.',
-                    confirmText: 'OK',
-                    cancelText: ''
-                });
-                return;
-            }
-
-            const amount = Engine.roundTwo(parseFloat(amountRaw));
-            if (isNaN(amount) || amount <= 0) {
-                await showModal({
-                    title: 'Invalid Amount',
-                    message: 'Please enter a valid number.',
-                    confirmText: 'OK',
-                    cancelText: ''
-                });
-                return;
-            }
-
-            const checkboxes = document.querySelectorAll('#splitCheckboxes input[type="checkbox"]:checked');
-            const splitAmong = Array.from(checkboxes).map(cb => cb.value);
-
-            if (splitAmong.length < 1) {
-                await showModal({
-                    title: 'No Split',
-                    message: 'Select at least one person to split with.',
-                    confirmText: 'OK',
-                    cancelText: ''
-                });
-                return;
-            }
-
-            if (!state.people.some(p => p.id === payerId)) {
-                await showModal({
-                    title: 'Invalid Payer',
-                    message: 'Please select a valid payer.',
-                    confirmText: 'OK',
-                    cancelText: ''
-                });
-                return;
-            }
-
-            const expense = {
-                id: generateId(),
-                description: desc,
-                amount: amount,
-                paidBy: payerId,
-                splitAmong: splitAmong,
-                date: new Date().toISOString().slice(0, 10)
-            };
-
-            state.expenses.push(expense);
-            saveState();
-
-            // Clear form
-            const descInput = document.getElementById('expDesc');
-            const amountInput = document.getElementById('expAmount');
-            if (descInput) descInput.value = '';
-            if (amountInput) amountInput.value = '';
-
-            // Close form on mobile
-            expenseFormOpen = false;
-            render();
-        };
-
-        window.deleteExpense = async function (id) {
+    window.removePerson = async function(id) {
+        const person = state.people.find(p => p.id === id);
+        if (!person) return;
+        
+        const usedInExpenses = state.expenses.some(e => 
+            e.paidBy === id || (e.splitAmong && e.splitAmong.includes(id))
+        );
+        
+        if (usedInExpenses) {
             const response = await showModal({
-                title: 'Delete Expense',
-                message: 'Are you sure you want to delete this expense?',
-                confirmText: 'Delete',
+                title: 'Remove Person',
+                message: `"${person.name}" is referenced in expenses. Remove them from all expenses?`,
+                confirmText: 'Yes, Remove',
                 cancelText: 'Cancel'
             });
             if (!response) return;
+            
+            state.expenses = state.expenses.filter(e => {
+                if (e.paidBy === id) return false;
+                if (e.splitAmong) {
+                    e.splitAmong = e.splitAmong.filter(pid => pid !== id);
+                }
+                return true;
+            });
+        } else {
+            const response = await showModal({
+                title: 'Remove Person',
+                message: `Remove "${person.name}" from the trip?`,
+                confirmText: 'Remove',
+                cancelText: 'Cancel'
+            });
+            if (!response) return;
+        }
+        
+        state.people = state.people.filter(p => p.id !== id);
+        saveState();
+        render();
+    };
 
-            state.expenses = state.expenses.filter(e => e.id !== id);
-            saveState();
-            render();
+    window.toggleExpenseForm = function() {
+        expenseFormOpen = !expenseFormOpen;
+        render();
+    };
+
+    window.addExpense = async function() {
+        const desc = document.getElementById('expDesc')?.value?.trim();
+        const amountRaw = document.getElementById('expAmount')?.value?.trim();
+        const payerId = document.getElementById('expPayer')?.value;
+        
+        if (!desc) {
+            await showModal({
+                title: 'Missing Description',
+                message: 'Please enter a description for this expense.',
+                confirmText: 'OK',
+                cancelText: ''
+            });
+            return;
+        }
+        if (!amountRaw || parseFloat(amountRaw) <= 0) {
+            await showModal({
+                title: 'Invalid Amount',
+                message: 'Please enter a positive amount.',
+                confirmText: 'OK',
+                cancelText: ''
+            });
+            return;
+        }
+        
+        const amount = Engine.roundTwo(parseFloat(amountRaw));
+        if (isNaN(amount) || amount <= 0) {
+            await showModal({
+                title: 'Invalid Amount',
+                message: 'Please enter a valid number.',
+                confirmText: 'OK',
+                cancelText: ''
+            });
+            return;
+        }
+        
+        const checkboxes = document.querySelectorAll('#splitCheckboxes input[type="checkbox"]:checked');
+        const splitAmong = Array.from(checkboxes).map(cb => cb.value);
+        
+        if (splitAmong.length < 1) {
+            await showModal({
+                title: 'No Split',
+                message: 'Select at least one person to split with.',
+                confirmText: 'OK',
+                cancelText: ''
+            });
+            return;
+        }
+        
+        if (!state.people.some(p => p.id === payerId)) {
+            await showModal({
+                title: 'Invalid Payer',
+                message: 'Please select a valid payer.',
+                confirmText: 'OK',
+                cancelText: ''
+            });
+            return;
+        }
+        
+        const expense = {
+            id: generateId(),
+            description: desc,
+            amount: amount,
+            paidBy: payerId,
+            splitAmong: splitAmong,
+            date: new Date().toISOString().slice(0,10)
         };
+        
+        state.expenses.push(expense);
+        saveState();
+        
+        // Clear form
+        const descInput = document.getElementById('expDesc');
+        const amountInput = document.getElementById('expAmount');
+        if (descInput) descInput.value = '';
+        if (amountInput) amountInput.value = '';
+        
+        // Close form on mobile
+        expenseFormOpen = false;
+        render();
+    };
 
-        window.exportData = function () {
-            const data = JSON.stringify(state, null, 2);
-            const blob = new Blob([data], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `expenses-${state.tripName.toLowerCase().replace(/\s+/g, '-')}-${new Date().toISOString().slice(0, 10)}.json`;
-            a.click();
-            URL.revokeObjectURL(url);
-        };
+    window.deleteExpense = async function(id) {
+        const response = await showModal({
+            title: 'Delete Expense',
+            message: 'Are you sure you want to delete this expense?',
+            confirmText: 'Delete',
+            cancelText: 'Cancel'
+        });
+        if (!response) return;
+        
+        state.expenses = state.expenses.filter(e => e.id !== id);
+        saveState();
+        render();
+    };
 
-        window.importData = function (event) {
-            const file = event.target.files[0];
-            if (!file) return;
+    window.exportData = function() {
+        const data = JSON.stringify(state, null, 2);
+        const blob = new Blob([data], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `expenses-${state.tripName.toLowerCase().replace(/\s+/g, '-')}-${new Date().toISOString().slice(0,10)}.json`;
+        a.click();
+        URL.revokeObjectURL(url);
+    };
 
-            const reader = new FileReader();
-            reader.onload = function (e) {
-                try {
-                    const imported = JSON.parse(e.target.result);
-                    if (!imported.people || !imported.expenses) {
-                        showModal({
-                            title: 'Invalid File',
-                            message: 'The file format is invalid. Missing people or expenses.',
-                            confirmText: 'OK',
-                            cancelText: ''
-                        });
-                        return;
-                    }
+    window.importData = function(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+        
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            try {
+                const imported = JSON.parse(e.target.result);
+                if (!imported.people || !imported.expenses) {
                     showModal({
-                        title: 'Import Data',
-                        message: `This will replace ALL current data with ${imported.people.length} people and ${imported.expenses.length} expenses. Continue?`,
-                        confirmText: 'Import',
-                        cancelText: 'Cancel'
-                    }).then((confirmed) => {
-                        if (confirmed) {
-                            state = imported;
-                            if (!state.tripName) state.tripName = 'My Trip';
-                            saveState();
-                            render();
-                        }
-                    });
-                } catch (err) {
-                    showModal({
-                        title: 'Import Error',
-                        message: 'Error reading file: ' + err.message,
+                        title: 'Invalid File',
+                        message: 'The file format is invalid. Missing people or expenses.',
                         confirmText: 'OK',
                         cancelText: ''
                     });
+                    return;
                 }
-            };
-            reader.readAsText(file);
-            event.target.value = ''; // Reset file input
+                showModal({
+                    title: 'Import Data',
+                    message: `This will replace ALL current data with ${imported.people.length} people and ${imported.expenses.length} expenses. Continue?`,
+                    confirmText: 'Import',
+                    cancelText: 'Cancel'
+                }).then((confirmed) => {
+                    if (confirmed) {
+                        state = imported;
+                        if (!state.tripName) state.tripName = 'My Trip';
+                        saveState();
+                        render();
+                    }
+                });
+            } catch (err) {
+                showModal({
+                    title: 'Import Error',
+                    message: 'Error reading file: ' + err.message,
+                    confirmText: 'OK',
+                    cancelText: ''
+                });
+            }
         };
+        reader.readAsText(file);
+        event.target.value = ''; // Reset file input
+    };
 
-        window.resetAll = async function () {
-            const response = await showModal({
-                title: '⚠️ Reset All Data',
-                message: 'This will permanently delete ALL data (people and expenses). This cannot be undone!',
-                confirmText: 'Yes, Delete Everything',
-                cancelText: 'Cancel'
-            });
-            if (!response) return;
+    window.resetAll = async function() {
+        const response = await showModal({
+            title: '⚠️ Reset All Data',
+            message: 'This will permanently delete ALL data (people and expenses). This cannot be undone!',
+            confirmText: 'Yes, Delete Everything',
+            cancelText: 'Cancel'
+        });
+        if (!response) return;
+        
+        state.people = [];
+        state.expenses = [];
+        state.tripName = 'My Trip';
+        saveState();
+        render();
+    };
 
-            state.people = [];
-            state.expenses = [];
-            state.tripName = 'My Trip';
-            saveState();
-            render();
-        };
+    // ---- Render ----
+    function render() {
+        const app = document.getElementById('app');
+        const { people, expenses, tripName } = state;
+        const balances = Engine.calculate(people, expenses);
+        const settlements = Engine.computeSettlements(people, expenses);
+        const totalExpenses = expenses.reduce((sum, e) => sum + e.amount, 0);
+        
+        // Create a map for quick name lookup
+        const nameMap = {};
+        people.forEach(p => nameMap[p.id] = p.name);
 
-        // ---- Render ----
-        function render() {
-            const app = document.getElementById('app');
-            const { people, expenses, tripName } = state;
-            const balances = Engine.calculate(people, expenses);
-            const settlements = Engine.computeSettlements(people, expenses);
-            const totalExpenses = expenses.reduce((sum, e) => sum + e.amount, 0);
-
-            // Create a map for quick name lookup
-            const nameMap = {};
-            people.forEach(p => nameMap[p.id] = p.name);
-
-            let html = `
+        let html = `
             <div class="app">
                 <div class="card">
                     <div class="flex-between">
                         <h1>🧾 ${tripName}</h1>
                         <div style="display:flex; gap:0.5rem; align-items:center;">
-                            <button class="theme-toggle" onclick="window.toggleTheme()">${darkMode ? '☀️' : '🌙'}</button>
+                            <button class="theme-toggle" onclick="toggleTheme()">${darkMode ? '☀️' : '🌙'}</button>
                             <button class="danger" onclick="window.resetAll()">Reset All</button>
                         </div>
                     </div>
@@ -1113,9 +966,9 @@
                             <thead><tr><th>Person</th><th>Paid</th><th>Fair share</th><th>Balance</th></tr></thead>
                             <tbody>
                                 ${Object.values(balances).map(b => {
-                const cls = b.balance > 0.005 ? 'text-green' : (b.balance < -0.005 ? 'text-red' : '');
-                return `<tr><td><strong>${b.name}</strong></td><td>$${b.paid.toFixed(2)}</td><td>$${b.share.toFixed(2)}</td><td class="${cls}">$${b.balance.toFixed(2)}</td></tr>`;
-            }).join('')}
+                                    const cls = b.balance > 0.005 ? 'text-green' : (b.balance < -0.005 ? 'text-red' : '');
+                                    return `<tr><td><strong>${b.name}</strong></td><td>$${b.paid.toFixed(2)}</td><td>$${b.share.toFixed(2)}</td><td class="${cls}">$${b.balance.toFixed(2)}</td></tr>`;
+                                }).join('')}
                             </tbody>
                         </table>
                     </div>
@@ -1125,14 +978,14 @@
                 <!-- Settlement plan -->
                 <div class="card" style="border-left:6px solid var(--accent);">
                     <h2>🔄 Settlement plan</h2>
-                    ${settlements.length === 0 ? '<div class="empty-state">✨ Everyone is settled up!</div>' :
-                    settlements.map(t => `
+                    ${settlements.length === 0 ? '<div class="empty-state">✨ Everyone is settled up!</div>' : 
+                        settlements.map(t => `
                             <div class="settlement-card">
                                 <span><strong>${t.from}</strong> <span class="arrow">➜</span> <strong>${t.to}</strong></span>
                                 <span class="text-large">$${t.amount.toFixed(2)}</span>
                             </div>
                         `).join('')
-                }
+                    }
                 </div>
 
                 <!-- Export/Import at the bottom -->
@@ -1149,13 +1002,12 @@
                 </div>
             </div>
         `;
-            app.innerHTML = html;
-        }
+        app.innerHTML = html;
+    }
 
-        // ---- Init ----
-        loadState();
-        render();
-    </script>
+    // ---- Init ----
+    loadState();
+    render();
+</script>
 </body>
-
 </html>
